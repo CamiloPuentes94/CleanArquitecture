@@ -1,4 +1,5 @@
 using CleanArquitecture.Domain.Abstractions;
+using CleanArquitecture.Domain.Users.Events;
 
 namespace CleanArquitecture.Domain.Users;
 
@@ -32,7 +33,7 @@ public sealed class User : Entity
             apellido,
             email
         );
-
+        user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id));
         return user;
     }
 }
